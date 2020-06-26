@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DishDetail from './Dishdetail';
+//import DishDetail from './DishdetailComponent';
 // import { Media } from 'reactstrap';
 
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
@@ -7,17 +7,19 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 class Menu extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+/* this.state = {
           selecteddish:null
-        };
+        }; */
     }
 
-    onDishSelect(dish) {
+ /* these two statements r now shifted to maincomponent.js
+
+  onDishSelect(dish) {
         this.setState({ selectedDish: dish});
     }
-
+*/
   
-    renderDish(dish) {
+  /*  renderDish(dish) {
         if (dish != null)
             return <DishDetail dish={this.state.selectedDish} />
         else
@@ -25,12 +27,13 @@ class Menu extends Component {
                 <div></div>
             );
     }
+*/
 
     render() {
         const menu = this.props.dishes.map((dish) => {
             return (
               <div key={dish.id} className= "col-12 col-md-5 m-1" >
-               <Card onClick={() => this.onDishSelect(dish)}>
+               <Card  onClick={() => this.props.onClick(dish.id)} >
                   <CardImg width="100%" src={dish.image} alt={dish.name} />
                   <CardImgOverlay>
                       <CardTitle>{dish.name}</CardTitle>
@@ -45,12 +48,8 @@ class Menu extends Component {
             <div className="row">
              {menu}
             </div>
-            <div className="row">
-                  <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
-                  </div>
+           
                 </div>
-          </div>
         );
     }
 }
@@ -58,7 +57,12 @@ class Menu extends Component {
 export default Menu;
 
 
-/* The following code is replaced by card in render()
+/*
+inside card command
+ onClick={() => this.onDishSelect(dish)}
+
+
+The following code is replaced by card in render()
 
 <Media tag="li">
 <Media left middle>
@@ -77,11 +81,9 @@ from return function
  
   from renderDish(dish)  function
 
-<Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                      <CardTitle>{dish.name}</CardTitle>
-                      <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+frm last return function
+ <div className="row">
+                  <div  className="col-12 col-md-5 m-1">
+                    {this.renderDish(this.state.selectedDish)}
+                  </div>
 */
