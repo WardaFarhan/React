@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 //import DishDetail from './DishdetailComponent';
 // import { Media } from 'reactstrap';
 
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle, CardText, CardBody } from 'reactstrap';
 
-class Menu extends Component {
+ /* class Menu extends Component {
     constructor(props) {
         super(props);
-/* this.state = {
+     this.state = {
           selecteddish:null
-        }; */
-    }
+        };
+      } */
+    
 
  /* these two statements r now shifted to maincomponent.js
 
@@ -29,7 +30,7 @@ class Menu extends Component {
     }
 */
 
-    render() {
+ /*   render() {
         const menu = this.props.dishes.map((dish) => {
             return (
               <div key={dish.id} className= "col-12 col-md-5 m-1" >
@@ -55,7 +56,7 @@ class Menu extends Component {
 }
 
 export default Menu;
-
+*/
 
 /*
 inside card command
@@ -87,3 +88,37 @@ frm last return function
                     {this.renderDish(this.state.selectedDish)}
                   </div>
 */
+
+function RenderMenuItem ({dish, onClick}) {
+  return (
+      <Card
+          onClick={() => onClick(dish.id)}>
+          <CardImg width="100%" src={dish.image} alt={dish.name} />
+          <CardImgOverlay>
+              <CardTitle>{dish.name}</CardTitle>
+          </CardImgOverlay>
+      </Card>
+  );
+}
+// below is another way to implement properties
+
+const Menu = (props) => {
+
+  const menu = props.dishes.map((dish) => {
+      return (
+          <div className="col-12 col-md-5 m-1"  key={dish.id}>
+              <RenderMenuItem dish={dish} onClick={props.onClick} />
+          </div>
+      );
+  });
+
+  return (
+      <div className="container">
+          <div className="row">
+              {menu}
+          </div>
+      </div>
+  );
+}
+
+export default Menu;
