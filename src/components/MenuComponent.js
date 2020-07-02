@@ -89,13 +89,12 @@ frm last return function
                   </div>
 */
 
-function RenderMenuItem ({ dish, onClick }) {
+function RenderMenuItem ({ dish}) {
     if(dish!=null)
 
 {
   return (
-      <Card
-          onClick={() => onClick(dish.id)}>
+      <Card>
           <CardImg width="100%" src={dish.image} alt={dish.name} />
           <CardImgOverlay>
               <CardTitle>{dish.name}</CardTitle>
@@ -126,3 +125,11 @@ const Menu = (props) => {
 }
 
 export default Menu;
+
+/*  frm rendermenuitem function
+
+, onClick  its inside the func parameters
+
+<card 
+          onClick={() => onClick(dish.id)}>
+*/
