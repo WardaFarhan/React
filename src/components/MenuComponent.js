@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-//import DishDetail from './DishdetailComponent';
+import React from 'react';
+//import DishDetail from './DishdetailComponent';     upar vale ka part , { Component }
 // import { Media } from 'reactstrap';
 
-import { Card, CardImg, CardImgOverlay, CardTitle, CardText, CardBody } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
  /* class Menu extends Component {
     constructor(props) {
@@ -89,7 +89,10 @@ frm last return function
                   </div>
 */
 
-function RenderMenuItem ({dish, onClick}) {
+function RenderMenuItem ({ dish, onClick }) {
+    if(dish!=null)
+
+{
   return (
       <Card
           onClick={() => onClick(dish.id)}>
@@ -98,7 +101,8 @@ function RenderMenuItem ({dish, onClick}) {
               <CardTitle>{dish.name}</CardTitle>
           </CardImgOverlay>
       </Card>
-  );
+  )
+};
 }
 // below is another way to implement properties
 

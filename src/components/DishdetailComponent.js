@@ -103,21 +103,22 @@ function RenderDish({dish}) {
   const  DishDetail = (props) => {
 
     if(props.dish !=null)
+  {
    return (
         <div className="container">
         <div className="row">
-            <div className="col-12 col-md-5 m-1">
-                <Card>
-                    <CardImg width='100%' src={dish.image} alt={dish.name} />
-                    <CardBody>
+            
+                
                     <RenderDish dish={props.dish}/>
-    <RenderComments comments={props.dish.comments}/>
-    </CardBody>
-                </Card>
-            </div>
+                    <RenderComments comments={props.dish.comments}/>
+            
         </div>
     </div>
-    ) 
+    )  }
+    else {
+        return <div></div>
+    }
+
   }
 
 
