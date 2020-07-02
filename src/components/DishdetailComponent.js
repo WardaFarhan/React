@@ -107,11 +107,11 @@ function RenderDish({dish}) {
    return (
         <div className="container">
         <div className="row">
-            
+        <div className="col-12 col-md-5 m-1">    
                 
                     <RenderDish dish={props.dish}/>
                     <RenderComments comments={props.dish.comments}/>
-            
+        </div>    
         </div>
     </div>
     )  }
