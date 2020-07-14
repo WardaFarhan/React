@@ -81,8 +81,10 @@ toggleModal() {
   }
 
   handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+      this.toggleModal();
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+      /*  console.log('Current State is: ' + JSON.stringify(values));
+        alert('Current State is: ' + JSON.stringify(values));*/
         // event.preventDefault();
     }
     render(){
@@ -176,8 +178,37 @@ function RenderDish({dish}) {
    
   }
 
-  function RenderComments(comments) {
-    let commentList = comments.comments.map((comment, i) => (
+  function RenderComments({comments, addComment, dishId}) {
+    if(comments!=null)
+              return(
+                  <div className="col-12 col-md-5 m-1">
+                      <h4>Comments</h4>
+                      <ul className="list-unstyled">
+                          {comments.map((comment) => {
+                              return(
+                                  <div key={comment.id} >
+                                <li className="mt-1" id="commentlist" >
+                                {comment.comment}
+                                </li>
+                                <li className="mt-1">
+                                  <p>  -- {comment.author} ,{new Intl.DateTimeFormat('en-US', { year: 'numeric',
+                                   month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                 </li>
+                                  </div> 
+                               
+                              );
+                          })}
+                      </ul>
+                      <CommentForm dishId={dishId} addComment={addComment}></CommentForm>
+                  </div>
+              );
+    else
+        return(
+            <div></div>
+        );
+  }
+
+   /* let commentList = comments.comments.map((comment, i) => (
       <li key={i} className="commentList">
         {comment.comment}
         <br />
@@ -192,9 +223,9 @@ function RenderDish({dish}) {
         <br />
       </li>
     ));
-    commentList.push(<CommentForm></CommentForm>);
+    commentList.push(<CommentForm ></CommentForm>);
     return commentList;
-  }
+  }  */
 
 
       /*  if(comments!=null){
@@ -239,7 +270,9 @@ function RenderDish({dish}) {
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} />
+                        <RenderComments comments={props.comments}
+                                        addComment={props.addComment}
+                                        dishId={props.dish.id} />
                     </div>
                 </div>
         </div>
