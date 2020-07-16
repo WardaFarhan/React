@@ -60,6 +60,8 @@ class DishDetail extends Component{
 }
 
 */
+//replacing addComment with postComment in the entire program
+
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -84,7 +86,7 @@ toggleModal() {
 
   handleSubmit(values) {
       this.toggleModal();
-    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+    this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
       /*  console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));*/
         // event.preventDefault();
@@ -180,7 +182,7 @@ function RenderDish({dish}) {
    
   }
 
-  function RenderComments({comments, addComment, dishId}) {
+  function RenderComments({comments, postComment, dishId}) {
     if(comments!=null)
               return(
                   <div className="col-12 col-md-5 m-1">
@@ -201,7 +203,7 @@ function RenderDish({dish}) {
                               );
                           })}
                       </ul>
-                      <CommentForm dishId={dishId} addComment={addComment}></CommentForm>
+                      <CommentForm dishId={dishId} postComment={postComment}></CommentForm>
                   </div>
               );
     else
@@ -290,7 +292,7 @@ function RenderDish({dish}) {
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={props.comments}
-                                        addComment={props.addComment}
+                                       postComment={props.postComment}
                                         dishId={props.dish.id} />
                     </div>
                 </div>
